@@ -11,9 +11,10 @@ import (
 	"net"
 )
 
-func Serve() {
+func Start() {
 	lister, err := net.Listen("tcp", "127.0.0.1:8888")
 	if err != nil {
+		fmt.Printf("错误信息%v",err)
 		return
 	}
 
@@ -33,10 +34,10 @@ func Serve() {
 }
 
 func handleConn(conn net.Conn) {
-	fmt.Printf("nihaoma")
+	fmt.Println("nihaoma")
 	input := bufio.NewScanner(conn)
 	for input.Scan() {
-		fmt.Printf("%s", input.Text())
+		fmt.Printf("%s\n", input.Text())
 	}
 	conn.Close()
 }
